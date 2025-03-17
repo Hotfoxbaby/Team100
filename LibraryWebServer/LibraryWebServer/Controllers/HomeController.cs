@@ -34,6 +34,19 @@ namespace LibraryWebServer.Controllers
             // TODO: Fill in. Determine if login is successful or not.
             bool loginSuccessful = false;
 
+            using ( Team100LibraryContext db = new ())
+            {
+                var query = from p in db.Patrons
+                            where p.Name == name && p.CardNum == cardnum
+                            select p;
+                foreach ( var p in query)
+                {
+                    loginSuccessful = true;
+                    user = p.Name;
+                    card = ((int)p.CardNum);
+                }
+            }
+            //NOTE: Code below in this method was already written in handout.
             if ( !loginSuccessful )
             {
                 return Json( new { success = false } );
@@ -72,10 +85,19 @@ namespace LibraryWebServer.Controllers
         [HttpPost]
         public ActionResult AllTitles()
         {
+            var titles = new List<Tuple<string, string, string, uint, string>>();
+            using ( Team100LibraryContext db = new())
+            {
+                var query = from inv in db.Inventory
+                            join co in db.CheckedOut on inv.Serial equals co.Serial
+                            select new Tuple<string, string, string, uint, string>(inv.Isbn, inv.IsbnNavigation.Title, inv.IsbnNavigation.Author, inv.Serial, co.CardNumNavigation.Name);
+                foreach ( var t in query )
+                {
+                    titles.Add( t );
+                }
+            }
 
-            // TODO: Implement
-
-            return Json( null );
+            return Json( titles );
 
         }
 
@@ -90,8 +112,19 @@ namespace LibraryWebServer.Controllers
         [HttpPost]
         public ActionResult ListMyBooks()
         {
-            // TODO: Implement
-            return Json( null );
+            List<Titles> checkedOut = new();
+            using ( Team100LibraryContext db = new())
+            {
+                var query = from co in db.CheckedOut
+                            where co.CardNum == card
+                            select co;
+                foreach ( var co in query )
+                {
+                    var title = co.SerialNavigation.IsbnNavigation;
+                    checkedOut.Add( title );
+                }
+            }
+            return Json( checkedOut );
         }
 
 
