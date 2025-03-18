@@ -31,7 +31,6 @@ namespace LibraryWebServer.Controllers
         [HttpPost]
         public IActionResult CheckLogin( string name, int cardnum )
         {
-            // TODO: Fill in. Determine if login is successful or not.
             bool loginSuccessful = false;
 
             using ( Team100LibraryContext db = new ())
@@ -139,8 +138,14 @@ namespace LibraryWebServer.Controllers
         [HttpPost]
         public ActionResult CheckOutBook( int serial )
         {
-            // You may have to cast serial to a (uint)
-
+            CheckedOut checkedOut = new();
+            checkedOut.Serial = (uint)serial;
+            checkedOut.CardNum = (uint)card;
+            using ( Team100LibraryContext db = new())
+            {
+                db.CheckedOut.Add( checkedOut );
+                db.SaveChanges();
+            }
 
             return Json( new { success = true } );
         }
@@ -155,7 +160,19 @@ namespace LibraryWebServer.Controllers
         [HttpPost]
         public ActionResult ReturnBook( int serial )
         {
-            // You may have to cast serial to a (uint)
+            var cNum = (uint)card;
+            var sNum = (uint)serial;
+            using ( Team100LibraryContext db = new())
+            {
+                var query = from co in db.CheckedOut
+                            where co.CardNum == cNum && co.Serial == sNum
+                            select co;
+                foreach ( var co in query)
+                {
+                    db.CheckedOut.Remove( co );
+                }
+                db.SaveChanges();
+            }
 
             return Json( new { success = true } );
         }
