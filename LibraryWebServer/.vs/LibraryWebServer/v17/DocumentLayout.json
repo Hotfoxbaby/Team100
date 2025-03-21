@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|c:\\users\\dracu\\source\\repos\\team100\\librarywebserver\\librarywebserver\\models\\team100librarycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|solutionrelative:librarywebserver\\models\\team100librarycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|c:\\users\\dracu\\source\\repos\\team100\\librarywebserver\\librarywebserver\\models\\checkedout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|solutionrelative:librarywebserver\\models\\checkedout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|c:\\users\\dracu\\source\\repos\\team100\\librarywebserver\\librarywebserver\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|solutionrelative:librarywebserver\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|c:\\users\\dracu\\source\\repos\\team100\\librarywebserver\\librarywebserver\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|solutionrelative:librarywebserver\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|c:\\users\\dracu\\source\\repos\\team100\\librarywebserver\\librarywebserver\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5598BB2D-3CF0-45E5-878C-5894B3B04B70}|LibraryWebServer\\LibraryWebServer.csproj|solutionrelative:librarywebserver\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{34c7837f-3b3a-449c-bdf0-bdad86cbaf4a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Team100LibraryContext.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Models\\Team100LibraryContext.cs",
+              "RelativeDocumentMoniker": "LibraryWebServer\\Models\\Team100LibraryContext.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Models\\Team100LibraryContext.cs",
+              "RelativeToolTip": "LibraryWebServer\\Models\\Team100LibraryContext.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA7wCcAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T21:49:35.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "LibraryWebServer\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "LibraryWebServer\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-21T21:48:42.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Inventory.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Models\\Inventory.cs",
+              "RelativeDocumentMoniker": "LibraryWebServer\\Models\\Inventory.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Models\\Inventory.cs",
+              "RelativeToolTip": "LibraryWebServer\\Models\\Inventory.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAcAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T04:48:59.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "LibraryWebServer\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "LibraryWebServer\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAYwIEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T04:28:13.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CheckedOut.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Models\\CheckedOut.cs",
+              "RelativeDocumentMoniker": "LibraryWebServer\\Models\\CheckedOut.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LibraryWebServer\\LibraryWebServer\\Models\\CheckedOut.cs",
+              "RelativeToolTip": "LibraryWebServer\\Models\\CheckedOut.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T04:27:50.859Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
