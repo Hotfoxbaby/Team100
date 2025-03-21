@@ -84,19 +84,27 @@ namespace LibraryWebServer.Controllers
         [HttpPost]
         public ActionResult AllTitles()
         {
-            var titles = new List<Tuple<string, string, string, uint, string>>();
-            using ( Team100LibraryContext db = new())
+            using (Team100LibraryContext db = new())
             {
-                var query = from inv in db.Inventory
-                            join co in db.CheckedOut on inv.Serial equals co.Serial
-                            select new Tuple<string, string, string, uint, string>(inv.Isbn, inv.IsbnNavigation.Title, inv.IsbnNavigation.Author, inv.Serial, co.CardNumNavigation.Name);
-                foreach ( var t in query )
-                {
-                    titles.Add( t );
-                }
-            }
+                var query = from t in db.Titles
+                            join inv in db.Inventory on t.Isbn equals inv.Isbn
+                            into tInventory
+                            from ti in tInventory.DefaultIfEmpty()
+                            join co in db.CheckedOut on ti.Serial equals co.Serial
+                            into coInventory
+                            from ci in coInventory.DefaultIfEmpty()
+                            select new
+                            {
+                                isbn = t.Isbn,
+                                title = t.Title,
+                                author = t.Author,
+                                serial = ti != null ? ti.Serial : (uint?)null,
+                                name = ci.CardNumNavigation != null ? ci.CardNumNavigation.Name : ""
+                            };
 
-            return Json( titles );
+
+                return Json( query.ToArray());
+            }
 
         }
 
@@ -111,19 +119,23 @@ namespace LibraryWebServer.Controllers
         [HttpPost]
         public ActionResult ListMyBooks()
         {
-            List<Titles> checkedOut = new();
-            using ( Team100LibraryContext db = new())
+            using (Team100LibraryContext db = new())
             {
                 var query = from co in db.CheckedOut
+                            join inv in db.Inventory on co.Serial equals inv.Serial
+                            into coInventory
+                            from ci in coInventory
+                            join t in db.Titles on ci.Isbn equals t.Isbn
                             where co.CardNum == card
-                            select co;
-                foreach ( var co in query )
-                {
-                    var title = co.SerialNavigation.IsbnNavigation;
-                    checkedOut.Add( title );
-                }
+                            select new
+                            {
+                                title = t.Title,
+                                author = t.Author,
+                                serial = ci.Serial
+                            };
+
+                return Json(query.ToArray());
             }
-            return Json( checkedOut );
         }
 
 
