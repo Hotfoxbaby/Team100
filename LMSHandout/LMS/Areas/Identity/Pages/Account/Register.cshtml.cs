@@ -192,9 +192,29 @@ namespace LMS.Areas.Identity.Pages.Account
         /// <param name="departmentAbbrev">The department abbreviation that the user belongs to (ignore for Admins) </param>
         /// <param name="role">The user's role: one of "Administrator", "Professor", "Student"</param>
         /// <returns>The uID of the new user</returns>
-        string CreateNewUser( string firstName, string lastName, DateTime DOB, string departmentAbbrev, string role )
+        string CreateNewUser( string firstName, string lastName, DateTime DOB, string departmentAbbrev, string role)
         {
             DateOnly dateOnly = DateOnly.FromDateTime(DOB);
+            Department department = null;
+            string uid = "";
+            if(role != "Administrator")
+            {
+                using (LMSContext db = new LMSContext())
+                {
+                    var query = from d in db.Departments
+                                where d.Subject == departmentAbbrev
+                                select d;
+                    foreach (var d in query)
+                    {
+                        department = d;
+                    }
+                    if (department == null)
+                    {
+                        department = new Department { Subject = departmentAbbrev };
+                    }
+                }
+            }
+
             switch ( role)
             {
                 case "Administrator":
@@ -202,11 +222,14 @@ namespace LMS.Areas.Identity.Pages.Account
                     break;
                 case "Professor":
                     db.Add(new Professor { Fname = firstName, Lname = lastName, Dob = dateOnly});
+                    department.Professors.Add(new Professor { Fname = firstName, Lname = lastName, Dob = dateOnly });
                     break;
                 case "Student":
                     db.Add(new Student { Fname = firstName, Lname = lastName, Dob = dateOnly});
+                    department.Students.Add(new Student { Fname = firstName, Lname = lastName, Dob = dateOnly });
                     break;
             }
+            db.SaveChanges();
             
             return "unknown";
         }
