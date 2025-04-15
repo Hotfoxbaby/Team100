@@ -194,6 +194,20 @@ namespace LMS.Areas.Identity.Pages.Account
         /// <returns>The uID of the new user</returns>
         string CreateNewUser( string firstName, string lastName, DateTime DOB, string departmentAbbrev, string role )
         {
+            DateOnly dateOnly = DateOnly.FromDateTime(DOB);
+            switch ( role)
+            {
+                case "Administrator":
+                    db.Add(new Administrator { Fname = firstName, Lname = lastName, Dob = dateOnly });
+                    break;
+                case "Professor":
+                    db.Add(new Professor { Fname = firstName, Lname = lastName, Dob = dateOnly});
+                    break;
+                case "Student":
+                    db.Add(new Student { Fname = firstName, Lname = lastName, Dob = dateOnly});
+                    break;
+            }
+            
             return "unknown";
         }
 

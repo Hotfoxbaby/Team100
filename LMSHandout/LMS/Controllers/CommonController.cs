@@ -30,6 +30,7 @@ namespace LMS.Controllers
         /// <returns>The JSON array</returns>
         public IActionResult GetDepartments()
         {            
+            
             return Json(null);
         }
 

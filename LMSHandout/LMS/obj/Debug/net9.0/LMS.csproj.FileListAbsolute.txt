@@ -377,3 +377,4 @@ C:\Users\dracu\source\repos\Team100\LMSHandout\LMS\obj\Debug\net9.0\refint\LMS.d
 C:\Users\dracu\source\repos\Team100\LMSHandout\LMS\obj\Debug\net9.0\LMS.pdb
 C:\Users\dracu\source\repos\Team100\LMSHandout\LMS\obj\Debug\net9.0\LMS.genruntimeconfig.cache
 C:\Users\dracu\source\repos\Team100\LMSHandout\LMS\obj\Debug\net9.0\ref\LMS.dll
+C:\Users\dracu\source\repos\Team100\LMSHandout\LMS\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
