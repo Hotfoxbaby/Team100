@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\models\\lmsmodels\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\models\\lmsmodels\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\models\\lmsmodels\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\models\\lmsmodels\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\models\\lmsmodels\\professor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\models\\lmsmodels\\professor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\models\\lmsmodels\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\models\\lmsmodels\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\models\\lmsmodels\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\models\\lmsmodels\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,59 +58,85 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Department.cs",
               "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Department.cs",
               "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Department.cs",
               "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Department.cs",
               "RelativeToolTip": "LMS\\Models\\LMSModels\\Department.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAzwA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T04:09:31.266Z",
+              "WhenOpened": "2025-04-15T19:18:27.279Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Class.cs",
-              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Class.cs",
-              "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Class.cs",
-              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Class.cs",
-              "RelativeToolTip": "LMS\\Models\\LMSModels\\Class.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "AdministratorController.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\AdministratorController.cs",
+              "RelativeDocumentMoniker": "LMS\\Controllers\\AdministratorController.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\AdministratorController.cs",
+              "RelativeToolTip": "LMS\\Controllers\\AdministratorController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAkwD8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T04:00:35.904Z",
+              "WhenOpened": "2025-04-15T19:16:51.2Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Professor.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Professor.cs",
+              "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Professor.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Professor.cs",
+              "RelativeToolTip": "LMS\\Models\\LMSModels\\Professor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T18:32:10.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Course.cs",
+              "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Course.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Course.cs",
+              "RelativeToolTip": "LMS\\Models\\LMSModels\\Course.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T18:31:30.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Student.cs",
               "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Student.cs",
               "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Student.cs",
               "RelativeToolTip": "LMS\\Models\\LMSModels\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBEAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-03T17:45:27.093Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "LMS\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeToolTip": "LMS\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
-              "ViewState": "AgIAALwAAAAAAAAAAAAAwM4AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAANwAAAAAAAAAAAAlwO8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-03T17:40:17.237Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CommonController.cs",
               "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\CommonController.cs",
               "RelativeDocumentMoniker": "LMS\\Controllers\\CommonController.cs",
@@ -110,7 +144,8 @@
               "RelativeToolTip": "LMS\\Controllers\\CommonController.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAYwCAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T00:34:40.884Z"
+              "WhenOpened": "2025-04-03T00:34:40.884Z",
+              "EditorCaption": ""
             }
           ]
         }

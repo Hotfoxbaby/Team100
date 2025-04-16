@@ -246,6 +246,12 @@ namespace LMS.Models.LMSModels
                 entity.Property(e => e.Lname)
                     .HasMaxLength(100)
                     .HasColumnName("LName");
+
+                entity.HasOne(d => d.WorksInNavigation)
+                    .WithMany(p => p.Professors)
+                    .HasForeignKey(d => d.WorksIn)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Professors_ibfk_1");
             });
 
             modelBuilder.Entity<Student>(entity =>
@@ -267,6 +273,12 @@ namespace LMS.Models.LMSModels
                 entity.Property(e => e.Lname)
                     .HasMaxLength(100)
                     .HasColumnName("LName");
+
+                entity.HasOne(d => d.MajorNavigation)
+                    .WithMany(p => p.Students)
+                    .HasForeignKey(d => d.Major)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Students_ibfk_1");
             });
 
             modelBuilder.Entity<Submission>(entity =>

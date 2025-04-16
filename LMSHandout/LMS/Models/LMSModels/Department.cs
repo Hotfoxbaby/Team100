@@ -8,6 +8,18 @@ namespace LMS.Models.LMSModels
         public Department()
         {
             Courses = new HashSet<Course>();
+            Professors = new HashSet<Professor>();
+            Students = new HashSet<Student>();
+        }
+
+        public Department(string name, string subject)
+        {
+            Name = name;
+            Subject = subject;
+
+            Courses = new HashSet<Course>();
+            Professors = new HashSet<Professor>();
+            Students = new HashSet<Student>();
         }
 
         public string? Name { get; set; }

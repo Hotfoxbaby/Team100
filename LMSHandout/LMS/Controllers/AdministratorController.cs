@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Threading.Tasks;
 using LMS.Models.LMSModels;
@@ -50,8 +51,16 @@ namespace LMS.Controllers
         /// false if the department already exists, true otherwise.</returns>
         public IActionResult CreateDepartment(string subject, string name)
         {
-            
-            return Json(new { success = false});
+            Department d = new Department(name, subject);
+            db.Departments.Add(d);
+            try
+            {
+                db.SaveChanges();
+                return Json(new { success = true });
+            } catch (Exception)
+            {
+                return Json(new { success = false });
+            }
         }
 
 

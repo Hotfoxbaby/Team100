@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace LMS.Areas.Identity.Pages.Account
 {
@@ -196,42 +197,48 @@ namespace LMS.Areas.Identity.Pages.Account
         {
             DateOnly dateOnly = DateOnly.FromDateTime(DOB);
             Department department = null;
+
             string uid = "";
-            if(role != "Administrator")
+            // Retreives the uID of all of the current users.
+            var uidQuery = (from s in db.Students
+                            select s.UId)
+                           .Union(from p in db.Professors select p.UId)
+                           .Union(from a in db.Administrators select a.UId);
+            // Creates a list from the query and sorts it to get the highest uID.
+            List<string> uids = uidQuery.ToList();
+            uids.Sort((a, b) => b.CompareTo(a));
+            // Starting uID is "u0000001"
+            string newUid = "1";
+            // If the list is not empty, the highest uID is the first element.
+            if (uids.Count > 0)
             {
-                using (LMSContext db = new LMSContext())
+                newUid = uids[0];
+                newUid = (Convert.ToInt32(newUid.Substring(1)) + 1).ToString();
+
+            }
+            while (newUid.Length < 7)
+            {
+                newUid = "0" + newUid;
+            }
+            uid = "u" + newUid;
+            
+            if (role != "Administrator")
+            {
+                switch (role)
                 {
-                    var query = from d in db.Departments
-                                where d.Subject == departmentAbbrev
-                                select d;
-                    foreach (var d in query)
-                    {
-                        department = d;
-                    }
-                    if (department == null)
-                    {
-                        department = new Department { Subject = departmentAbbrev };
-                    }
+                    case "Professor":
+                        db.Add(new Professor { Fname = firstName, Lname = lastName, Dob = dateOnly, UId = uid, WorksIn=departmentAbbrev});
+                        break;
+                    case "Student":
+                        db.Add(new Student { Fname = firstName, Lname = lastName, Dob = dateOnly, UId = uid, Major = departmentAbbrev });
+                        break;
                 }
             }
-
-            switch ( role)
-            {
-                case "Administrator":
-                    db.Add(new Administrator { Fname = firstName, Lname = lastName, Dob = dateOnly });
-                    break;
-                case "Professor":
-                    db.Add(new Professor { Fname = firstName, Lname = lastName, Dob = dateOnly});
-                    department.Professors.Add(new Professor { Fname = firstName, Lname = lastName, Dob = dateOnly });
-                    break;
-                case "Student":
-                    db.Add(new Student { Fname = firstName, Lname = lastName, Dob = dateOnly});
-                    department.Students.Add(new Student { Fname = firstName, Lname = lastName, Dob = dateOnly });
-                    break;
+            else {
+                db.Add(new Administrator { Fname = firstName, Lname = lastName, Dob = dateOnly, UId = uid });
             }
             db.SaveChanges();
-            
-            return "unknown";
+            return uid;
         }
 
         /*******End code to modify********/
