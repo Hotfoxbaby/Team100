@@ -55,7 +55,6 @@ namespace LMS.Controllers
             db.Departments.Add(d);
             try
             {
-                db.SaveChanges();
                 return Json(new { success = true });
             } catch (Exception)
             {
@@ -74,8 +73,10 @@ namespace LMS.Controllers
         /// <returns>The JSON result</returns>
         public IActionResult GetCourses(string subject)
         {
-            
-            return Json(null);
+            var query = from course in db.Courses
+                        where course.Subject == subject
+                        select course;
+            return Json(query.ToArray());
         }
 
         /// <summary>
@@ -89,8 +90,10 @@ namespace LMS.Controllers
         /// <returns>The JSON result</returns>
         public IActionResult GetProfessors(string subject)
         {
-            
-            return Json(null);
+            var query = from p in db.Professors
+                        where p.WorksIn == subject
+                        select new { lname = p.Lname, fname = p.Fname, uid = p.UId};
+            return Json(query.ToArray());
             
         }
 
@@ -106,8 +109,17 @@ namespace LMS.Controllers
         /// <returns>A JSON object containing {success = true/false}.
         /// false if the course already exists, true otherwise.</returns>
         public IActionResult CreateCourse(string subject, int number, string name)
-        {           
-            return Json(new { success = false });
+        {   
+            db.Add(new Course(subject, number, name));
+            try
+            {
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
         }
 
 
@@ -129,8 +141,22 @@ namespace LMS.Controllers
         /// a Class offering of the same Course in the same Semester,
         /// true otherwise.</returns>
         public IActionResult CreateClass(string subject, int number, string season, int year, DateTime start, DateTime end, string location, string instructor)
-        {            
-            return Json(new { success = false});
+        {   
+            var query = from c in db.Courses
+                        join p in db.Professors on instructor equals p.UId
+                        where c.Subject == subject && c.Number == number.ToString()
+                        select new {c.CourseId, p.UId};
+            try
+            {
+                int cid = query.ToArray()[0].CourseId;
+                string pid = query.ToArray()[0].UId;
+                db.Add(new Class(cid, season, year, start, end, location, pid));
+                db.SaveChanges();
+                return Json(new { success = true });
+            } catch (Exception)
+            {
+                return Json(new { success = false });
+            }
         }
 
 

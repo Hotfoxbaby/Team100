@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LMSControllerTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edeba48f2c9d8eb78e664b598622a1cdebc2fbf9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6b10ce81c971f19caf0f6580d2e47694b150eda")]
 [assembly: System.Reflection.AssemblyProductAttribute("LMSControllerTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LMSControllerTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

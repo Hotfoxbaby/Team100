@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Tasks;
 using LMS.Models.LMSModels;
@@ -29,9 +30,13 @@ namespace LMS.Controllers
         /// </summary>
         /// <returns>The JSON array</returns>
         public IActionResult GetDepartments()
-        {            
-            
-            return Json(null);
+        {
+            var query = from d in db.Departments
+                        select new {
+                            name = d.Name, 
+                            subject = d.Subject
+                        };
+            return Json(query.ToArray());
         }
 
 
@@ -48,8 +53,17 @@ namespace LMS.Controllers
         /// </summary>
         /// <returns>The JSON array</returns>
         public IActionResult GetCatalog()
-        {            
-            return Json(null);
+        {   
+            var query = from d in db.Departments
+                        select new { 
+                            subject = d.Subject, 
+                            dname = d.Name, 
+                            courses = (from c in db.Courses 
+                                       where c.Subject == d.Subject 
+                                       select new { number = c.Number, cname = c.Name }).ToArray()
+                        };
+
+            return Json(query.ToArray());
         }
 
         /// <summary>
@@ -67,8 +81,22 @@ namespace LMS.Controllers
         /// <param name="number">The course number, as in 5530</param>
         /// <returns>The JSON array</returns>
         public IActionResult GetClassOfferings(string subject, int number)
-        {            
-            return Json(null);
+        {
+            var query = from c in db.Classes
+                        join p in db.Professors on c.PId equals p.UId
+                        join co in db.Courses on c.CourseId equals co.CourseId
+                        where co.Subject == subject && co.Number == number.ToString()
+                        select new
+                        {
+                            season = c.Semester!.Substring(0, c.Semester.Length-4),
+                            year = c.Semester.Substring(c.Semester.Length-4),
+                            location = c.Location,
+                            start = c.StartTime,
+                            end = c.EndTime,
+                            fname = p.Fname,
+                            lname = p.Lname
+                        };
+            return Json(query.ToArray());
         }
 
         /// <summary>
@@ -84,8 +112,15 @@ namespace LMS.Controllers
         /// <param name="asgname">The name of the assignment in the category</param>
         /// <returns>The assignment contents</returns>
         public IActionResult GetAssignmentContents(string subject, int num, string season, int year, string category, string asgname)
-        {            
-            return Content("");
+        {
+            var query = from a in db.Assignments
+                        join ac in db.AssignmentCategories on a.AcId equals ac.AcId
+                        join c in db.Classes on ac.ClassId equals c.ClassId
+                        join co in db.Courses on c.CourseId equals co.CourseId
+                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString()
+                        && ac.Name == category && a.Name == asgname
+                        select a.Contents;
+            return Content(query.ToArray()[0]);
         }
 
 
@@ -104,8 +139,16 @@ namespace LMS.Controllers
         /// <param name="uid">The uid of the student who submitted it</param>
         /// <returns>The submission text</returns>
         public IActionResult GetSubmissionText(string subject, int num, string season, int year, string category, string asgname, string uid)
-        {            
-            return Content("");
+        {   var query = from s in db.Submissions
+                        join a in db.Assignments on s.AId equals a.AId
+                        join ac in db.AssignmentCategories on a.AcId equals ac.AcId
+                        join c in db.Classes on ac.ClassId equals c.ClassId
+                        join co in db.Courses on c.CourseId equals co.CourseId
+                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() 
+                        && ac.Name == category && a.Name == asgname && s.UId == uid
+                        select s.Contents;
+            if(!query.Any()) return Content("");
+            return Content(query.ToArray()[0]);
         }
 
 
@@ -126,8 +169,25 @@ namespace LMS.Controllers
         /// or an object containing {success: false} if the user doesn't exist
         /// </returns>
         public IActionResult GetUser(string uid)
-        {           
-            return Json(new { success = false });
+        {
+            var query = (from p in db.Professors
+                         where p.UId == uid
+                         select new { fname = p.Fname, lname = p.Lname, uid = p.UId, department = p.WorksIn })
+                        .Union(from s in db.Students
+                               where s.UId == uid
+                               select new { fname = s.Fname, lname = s.Lname, uid = s.UId, department = s.Major });
+            if (query.Any())
+                return Json(query.ToArray()[0]);
+            else
+            {
+                var aQuery = from a in db.Administrators
+                        where a.UId == uid
+                        select new { fname = a.Fname, lname = a.Lname, uid = a.UId };
+                if(!aQuery.Any())
+                    return Json(new { success = false });
+                return Json(query.ToArray()[0]);
+            }
+            
         }
 
 

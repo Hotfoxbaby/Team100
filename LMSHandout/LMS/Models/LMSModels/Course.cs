@@ -10,6 +10,15 @@ namespace LMS.Models.LMSModels
             Classes = new HashSet<Class>();
         }
 
+        public Course(string subject, int number, string name)
+        {
+            Subject = subject;
+            Number = number.ToString();
+            Name = name;
+
+            Classes = new HashSet<Class>();
+        }
+
         public string? Name { get; set; }
         public string? Number { get; set; }
         public string? Subject { get; set; }

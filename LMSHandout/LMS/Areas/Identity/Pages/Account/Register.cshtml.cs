@@ -196,7 +196,6 @@ namespace LMS.Areas.Identity.Pages.Account
         string CreateNewUser( string firstName, string lastName, DateTime DOB, string departmentAbbrev, string role)
         {
             DateOnly dateOnly = DateOnly.FromDateTime(DOB);
-            Department department = null;
 
             string uid = "";
             // Retreives the uID of all of the current users.
