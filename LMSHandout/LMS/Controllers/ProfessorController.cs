@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Authors: Liana Cruz, Luke Stansbury
+// Date 4/18/2025
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -123,7 +125,15 @@ namespace LMS_CustomIdentity.Controllers
                         join e in db.Enrolleds on c.ClassId equals e.ClassId
                         join s in db.Students on e.UId equals s.UId
                         where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year
-                        select s;
+                        select new
+                        {
+
+                            fname = s.Fname,
+                            lname = s.Lname,
+                            uid = s.UId,
+                            dob = s.Dob,
+                            grade = e.Grade == null ? "--" : e.Grade
+                        };
             return Json(query.ToArray());
         }
 
@@ -159,6 +169,21 @@ namespace LMS_CustomIdentity.Controllers
                             due = a.Due,
                             submissions = a.Submissions.Count()
                         };
+            if(category == null)
+            {
+                query = from co in db.Courses
+                        join c in db.Classes on co.CourseId equals c.CourseId
+                        join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
+                        join a in db.Assignments on ac.AcId equals a.AcId
+                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year
+                        select new
+                        {
+                            aname = a.Name,
+                            cname = ac.Name,
+                            due = a.Due,
+                            submissions = a.Submissions.Count()
+                        };
+            }
             return Json(query.ToArray());
         }
 
@@ -177,7 +202,16 @@ namespace LMS_CustomIdentity.Controllers
         /// <returns>The JSON array</returns>
         public IActionResult GetAssignmentCategories(string subject, int num, string season, int year)
         {
-            return Json(null);
+            var query = from co in db.Courses
+                        join c in db.Classes on co.CourseId equals c.CourseId
+                        join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
+                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year
+                        select new
+                        {
+                            name = ac.Name,
+                            weight = ac.Weight
+                        };
+            return Json(query.ToArray());
         }
 
         /// <summary>
@@ -234,7 +268,16 @@ namespace LMS_CustomIdentity.Controllers
             try
             {
                 db.Add(new Assignment { Name = asgname, Points = ((uint)asgpoints), Due = asgdue, Contents = asgcontents, AcId = query.ToArray()[0] });
+                var query2 = from co in db.Courses 
+                             join c in db.Classes on co.CourseId equals c.CourseId
+                             join e in db.Enrolleds on c.ClassId equals e.ClassId
+                             where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year
+                             select e.UId;
                 db.SaveChanges();
+                foreach (string uid in query2.ToArray())
+                {
+                    UpdateGrades(subject, num, uid, season, year);
+                }
                 return Json(new { success = true });
             }
             catch
@@ -263,20 +306,28 @@ namespace LMS_CustomIdentity.Controllers
         /// <returns>The JSON array</returns>
         public IActionResult GetSubmissionsToAssignment(string subject, int num, string season, int year, string category, string asgname)
         {
+            var query1 = from a in db.Assignments
+                         join s in db.Submissions on a.AId equals s.AId
+                         into asa
+                         from s in asa.DefaultIfEmpty()
+                         select new
+                         {
+                             s = s,
+                             a = a
+                         };
             var query = from co in db.Courses
                         join c in db.Classes on co.CourseId equals c.CourseId
                         join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
-                        join a in db.Assignments on ac.AcId equals a.AcId
-                        join s in db.Submissions on a.AId equals s.AId
-                        join st in db.Students on s.UId equals st.UId
-                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year && ac.Name == category && a.Name == asgname
+                        join asa in query1 on ac.AcId equals asa.a.AcId
+                        join st in db.Students on asa.s.UId equals st.UId
+                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() && ac.Name == category && asa.a.Name == asgname
                         select new
                         {
                             fname = st.Fname,
                             lname = st.Lname,
-                            uid = s.UId,
-                            time = s.Time,
-                            score = s.Score
+                            uid = asa.s.UId,
+                            time = asa.s.Time,
+                            score = asa.s.Score == null ? "--" : asa.s.Score.ToString()
                         };
             return Json(query.ToArray());
         }
@@ -308,6 +359,7 @@ namespace LMS_CustomIdentity.Controllers
                 query.ToArray()[0].Score = (uint)score;
                 db.Update(query.ToArray()[0]);
                 db.SaveChanges();
+                UpdateGrades(subject, num, uid, season, year);
                 return Json(new { success = true });
             }
             catch
@@ -315,6 +367,123 @@ namespace LMS_CustomIdentity.Controllers
                 return Json(new { success = false });
 
             }
+        }
+
+        /// <summary>
+        /// Updates the grades for all students when a new assignment is released or
+        /// When an assignment is graded.
+        /// </summary>
+        /// <returns></returns>
+        private void UpdateGrades(string subject, int num, string uid, string season, int year)
+        {
+            var query1 = from a in db.Assignments
+                         join s in db.Submissions on a.AId equals s.AId
+                         into asa
+                         from joined in asa.DefaultIfEmpty()
+                         select new
+                         {
+                             s = joined.UId,
+                             sScore = joined.Score,
+                             a = joined.AId,
+                             aPoints =a.Points
+                         };
+            var query = from co in db.Courses
+                        join c in db.Classes on co.CourseId equals c.CourseId
+                        join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
+                        join asa in query1 on ac.AcId equals asa.a
+                        join e in db.Enrolleds on asa.s equals e.UId
+                        where co.Subject == subject && co.Number == num.ToString() && e.UId == uid && c.Semester == season + year
+                        select new
+                        {
+                            aScore = asa.sScore == null ? 0 : asa.sScore,
+                            aPoints = asa.aPoints,
+                            ac = ac,
+                            Aid = asa.a
+                        };
+            
+            Dictionary<int, int> acPercentages = new Dictionary<int, int>();
+            Dictionary<int, double> sScore = new Dictionary<int, double>();
+            Dictionary<int, int> sPoints = new Dictionary<int, int>();
+            List<int> aIDs = new List<int>();
+            var queryList = query.ToList();
+            var classID = queryList[0].ac.ClassId;
+            foreach (var q in queryList)
+            {
+                if (!sScore.ContainsKey(q.ac.AcId))
+                {
+                    acPercentages.Add(q.ac.AcId, (int)q.ac.Weight!);
+                    sScore.Add(q.ac.AcId, (int)q.aScore!);
+                    sPoints.Add(q.ac.AcId, (int)q.aPoints!);
+                    aIDs.Add(q.Aid);
+                }
+                else if(!aIDs.Contains(q.Aid))
+                {
+                    sScore[q.ac.AcId] += (double)q.aScore!;
+                    sPoints[q.ac.AcId] += (int)q.aPoints!;
+                    aIDs.Add(q.Aid);
+                }
+            }
+            double scale = 0;
+            foreach (var q in sScore.Keys)
+            {
+                scale += acPercentages[q];
+                sScore[q] = (sScore[q] / sPoints[q]) * acPercentages[q];
+            }
+            scale = 100/scale;
+            double grade = 0;
+            foreach (var q in sScore.Keys)
+            {
+                grade += sScore[q] * scale;
+            }
+            if(grade >= 93)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "A", ClassId = (int)classID! });
+            }
+            else if (grade >= 90)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "A-", ClassId = (int)classID! });
+            }
+            else if (grade >= 87)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "B+", ClassId = (int)classID! });
+            }
+            else if (grade >= 83)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "B", ClassId = (int)classID! });
+            }
+            else if (grade >= 80)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "B-", ClassId = (int)classID! });
+            }
+            else if (grade >= 77)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "C+", ClassId = (int)classID! });
+            }
+            else if (grade >= 73)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "C", ClassId = (int)classID! });
+            }
+            else if (grade >= 70)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "C-", ClassId = (int)classID! });
+            }
+            else if (grade >= 67)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "D+", ClassId = (int)classID! });
+            }
+            else if (grade >= 63)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "D", ClassId = (int)classID! });
+            }
+            else if (grade >= 60)
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "D-", ClassId = (int)classID! });
+            }
+            else 
+            {
+                db.Update(new Enrolled { UId = uid, Grade = "E", ClassId = (int)classID! });
+            }
+            db.SaveChanges();
         }
 
 

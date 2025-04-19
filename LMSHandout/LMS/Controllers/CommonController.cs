@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Authors: Liana Cruz, Luke Stansbury
+// Date 4/18/2025
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -147,8 +149,7 @@ namespace LMS.Controllers
                         where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() 
                         && ac.Name == category && a.Name == asgname && s.UId == uid
                         select s.Contents;
-            if(!query.Any()) return Content("");
-            return Content(query.ToArray()[0]);
+            return Content(query.FirstOrDefault() == null ? "" : query.FirstOrDefault()!);
         }
 
 

@@ -1,7 +1,10 @@
-﻿using System;
+﻿// Authors: Liana Cruz, Luke Stansbury
+// Date 4/18/2025
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using LMS.Models.LMSModels;
 using Microsoft.AspNetCore.Authorization;
@@ -88,8 +91,9 @@ namespace LMS.Controllers
                             name = co.Name,
                             season = c.Semester!.Substring(0, c.Semester.Length - 4),
                             year = c.Semester.Substring(c.Semester.Length - 4),
-                            grade = e.Grade
+                            grade = e.Grade == null ? "--" : e.Grade
                         };
+            var queryList = query.ToList();
             return Json(query.ToArray());
         }
 
@@ -109,20 +113,23 @@ namespace LMS.Controllers
         /// <returns>The JSON array</returns>
         public IActionResult GetAssignmentsInClass(string subject, int num, string season, int year, string uid)
         {
+            string sem = season + year;
             var query = from a in db.Assignments
                         join ac in db.AssignmentCategories on a.AcId equals ac.AcId
-                        join s in db.Students on uid equals s.UId
-                        join e in db.Enrolleds on s.UId equals e.UId
-                        join c in db.Classes on e.ClassId equals c.ClassId
+                        join c in db.Classes on ac.ClassId equals c.ClassId
                         join co in db.Courses on c.CourseId equals co.CourseId
-                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() && s.UId == uid
+                        join e in db.Enrolleds on new{ unid = uid, classId = c.ClassId } equals new{ unid = e.UId, classId = e.ClassId }
+                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == sem
                         select new
                         {
                             aname = a.Name,
                             cname = ac.Name,
                             due = a.Due,
-                            score = a.Submissions.Where(x => x.UId == uid).Select(x => x.Score).FirstOrDefault()
+                            score = a.Submissions.Where(x => x.UId == uid).Select(x => x.Score).FirstOrDefault(),
+                            semester = c.Semester
                         };
+            var queryList = query.ToList();
+
             return Json(query.ToArray());
         }
 
@@ -152,11 +159,20 @@ namespace LMS.Controllers
                         join c in db.Classes on co.CourseId equals c.CourseId
                         join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
                         join a in db.Assignments on ac.AcId equals a.AcId
+                        join s in db.Students on uid equals s.UId
                         where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString()
-                        select a.AId;
+                        select new{
+                            a = a.AId,
+                            s = s.UId
+                        };
+            var queryItem = query.FirstOrDefault();
+            var queryList = query.ToList();
             try
             {
-                db.Add(new Submission { AId = query.FirstOrDefault(), UId = uid, Contents = contents, Time = DateTime.Now});
+                if(queryList.Count == 0)
+                    db.Add(new Submission { AId = query.FirstOrDefault()!.a, UId = uid, Contents = contents, Time = DateTime.Now});
+                else
+                    db.Update(new Submission { AId = query.FirstOrDefault()!.a, UId = uid, Contents = contents, Time = DateTime.Now });
                 db.SaveChanges();
                 return Json(new { success = true });
             }
@@ -214,15 +230,70 @@ namespace LMS.Controllers
                         where e.UId == uid
                         select e.Grade;
             List<string> grades = query.ToList();
-            int totalGrades = 0;
+            double totalGrades = 0;
+            int countedGrades = 0;
             foreach (string g in grades)
             {
-                totalGrades += int.Parse(g);
+                if (g is null)
+                    continue;
+                totalGrades += CalculateGPA(g);
+                countedGrades++;
             }
-            double gpa = (double)totalGrades / (double)grades.Count;
-            return Json(new { grade = gpa });
+            double gpa = countedGrades == 0 ? 0.0 : totalGrades / (double)countedGrades;
+            return Json(new { gpa = gpa });
         }
-                
+        
+        private double CalculateGPA(string grade)
+        {
+            if (grade == "A")
+            {
+                return 4.0;
+            }
+            else if (grade == "A-")
+            {
+                return 3.7;
+            }
+            else if (grade == "B+")
+            {
+                return 3.3;
+            }
+            else if (grade == "B")
+            {
+                return 3.0;
+            }
+            else if (grade == "B-")
+            {
+                return 2.7;
+            }
+            else if (grade == "C+")
+            {
+                return 2.3;
+            }
+            else if (grade == "C")
+            {
+                return 2.0;
+            }
+            else if (grade == "C-")
+            {
+                return 1.7;
+            }
+            else if (grade == "D+")
+            {
+                return 1.3;
+            }
+            else if (grade == "D")
+            {
+                return 1.0;
+            }
+            else if (grade == "D-")
+            {
+                return 0.7;
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
         /*******End code to modify********/
 
     }
