@@ -160,19 +160,31 @@ namespace LMS.Controllers
                         join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
                         join a in db.Assignments on ac.AcId equals a.AcId
                         join s in db.Students on uid equals s.UId
-                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString()
+                        where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() && a.Name == asgname
                         select new{
                             a = a.AId,
                             s = s.UId
                         };
             var queryItem = query.FirstOrDefault();
-            var queryList = query.ToList();
+            var query1 = from co in db.Courses
+                         join c in db.Classes on co.CourseId equals c.CourseId
+                         join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
+                         join a in db.Assignments on ac.AcId equals a.AcId
+                         join s in db.Students on uid equals s.UId
+                         join su in db.Submissions on a.AId equals su.AId
+                         where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() && a.Name == asgname
+                         select new
+                         {
+                             a = a.AId,
+                             s = s.UId
+                         };
+            var queryList = query1.ToList();
             try
             {
                 if(queryList.Count == 0)
-                    db.Add(new Submission { AId = query.FirstOrDefault()!.a, UId = uid, Contents = contents, Time = DateTime.Now});
+                    db.Add(new Submission { AId = queryItem!.a, UId = uid, Contents = contents, Time = DateTime.Now});
                 else
-                    db.Update(new Submission { AId = query.FirstOrDefault()!.a, UId = uid, Contents = contents, Time = DateTime.Now });
+                    db.Update(new Submission { AId = queryItem!.a, UId = uid, Contents = contents, Time = DateTime.Now });
                 db.SaveChanges();
                 return Json(new { success = true });
             }

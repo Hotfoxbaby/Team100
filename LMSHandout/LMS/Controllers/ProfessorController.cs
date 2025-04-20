@@ -382,17 +382,18 @@ namespace LMS_CustomIdentity.Controllers
                          from joined in asa.DefaultIfEmpty()
                          select new
                          {
-                             s = joined.UId,
+                             uid = joined.UId,
                              sScore = joined.Score,
                              a = joined.AId,
+                             ac = a.AcId,
                              aPoints =a.Points
                          };
             var query = from co in db.Courses
                         join c in db.Classes on co.CourseId equals c.CourseId
                         join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
-                        join asa in query1 on ac.AcId equals asa.a
-                        join e in db.Enrolleds on asa.s equals e.UId
-                        where co.Subject == subject && co.Number == num.ToString() && e.UId == uid && c.Semester == season + year
+                        join asa in query1 on ac.AcId equals asa.ac
+                        join e in db.Enrolleds on asa.uid equals e.UId
+                        where co.Subject == subject && co.Number == num.ToString() && asa.uid == uid && c.Semester == season + year
                         select new
                         {
                             aScore = asa.sScore == null ? 0 : asa.sScore,

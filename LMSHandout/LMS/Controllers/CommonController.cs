@@ -149,6 +149,7 @@ namespace LMS.Controllers
                         where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() 
                         && ac.Name == category && a.Name == asgname && s.UId == uid
                         select s.Contents;
+            var text = query.FirstOrDefault();
             return Content(query.FirstOrDefault() == null ? "" : query.FirstOrDefault()!);
         }
 
