@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\professorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\professorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\professorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\professorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\models\\lmsmodels\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\models\\lmsmodels\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\views\\student\\class.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\views\\student\\class.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\models\\lmsmodels\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\models\\lmsmodels\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|c:\\users\\dracu\\source\\repos\\team100\\lmshandout\\lms\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7779DCA-6458-4556-ABC4-E8D6A159851E}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,65 +50,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Class.cshtml",
-              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Views\\Student\\Class.cshtml",
-              "RelativeDocumentMoniker": "LMS\\Views\\Student\\Class.cshtml",
-              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Views\\Student\\Class.cshtml",
-              "RelativeToolTip": "LMS\\Views\\Student\\Class.cshtml",
-              "ViewState": "AgIAACUAAAAAAAAAAAAiwF8AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-19T05:16:08.771Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Student.cs",
-              "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Student.cs",
-              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Student.cs",
-              "RelativeToolTip": "LMS\\Models\\LMSModels\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T02:01:23.173Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "StudentController.cs",
-              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\StudentController.cs",
-              "RelativeDocumentMoniker": "LMS\\Controllers\\StudentController.cs",
-              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\StudentController.cs",
-              "RelativeToolTip": "LMS\\Controllers\\StudentController.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAxwLYAAAAMAAAAAAAAAA==",
+              "Title": "Class.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Class.cs",
+              "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Class.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Class.cs",
+              "RelativeToolTip": "LMS\\Models\\LMSModels\\Class.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T01:49:32.865Z",
+              "WhenOpened": "2025-04-16T02:18:19.725Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ProfessorController.cs",
               "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\ProfessorController.cs",
               "RelativeDocumentMoniker": "LMS\\Controllers\\ProfessorController.cs",
               "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\ProfessorController.cs",
               "RelativeToolTip": "LMS\\Controllers\\ProfessorController.cs",
-              "ViewState": "AgIAAJMBAAAAAAAAAAAqwKQBAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAK8BAAAAAAAAAAAAwBgBAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-16T03:18:08.047Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Class.cs",
-              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Class.cs",
-              "RelativeDocumentMoniker": "LMS\\Models\\LMSModels\\Class.cs",
-              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Models\\LMSModels\\Class.cs",
-              "RelativeToolTip": "LMS\\Models\\LMSModels\\Class.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "LMS\\Controllers\\StudentController.cs",
+              "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "LMS\\Controllers\\StudentController.cs",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAmwMkAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T02:18:19.725Z"
+              "WhenOpened": "2025-04-18T01:49:32.865Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -128,17 +97,18 @@
               "RelativeToolTip": "LMS\\Controllers\\AdministratorController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T19:16:51.2Z"
+              "WhenOpened": "2025-04-15T19:16:51.2Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CommonController.cs",
               "DocumentMoniker": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\CommonController.cs",
               "RelativeDocumentMoniker": "LMS\\Controllers\\CommonController.cs",
               "ToolTip": "C:\\Users\\dracu\\source\\repos\\Team100\\LMSHandout\\LMS\\Controllers\\CommonController.cs",
               "RelativeToolTip": "LMS\\Controllers\\CommonController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAswBAAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-03T00:34:40.884Z",
               "EditorCaption": ""
