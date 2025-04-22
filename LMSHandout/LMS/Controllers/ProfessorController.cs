@@ -169,7 +169,7 @@ namespace LMS_CustomIdentity.Controllers
                             due = a.Due,
                             submissions = a.Submissions.Count()
                         };
-            if(category == null)
+            if(category == null) //if there's no category name specified
             {
                 query = from co in db.Courses
                         join c in db.Classes on co.CourseId equals c.CourseId
@@ -268,15 +268,17 @@ namespace LMS_CustomIdentity.Controllers
             try
             {
                 db.Add(new Assignment { Name = asgname, Points = ((uint)asgpoints), Due = asgdue, Contents = asgcontents, AcId = query.ToArray()[0] });
+                db.SaveChanges();
                 var query2 = from co in db.Courses 
                              join c in db.Classes on co.CourseId equals c.CourseId
                              join e in db.Enrolleds on c.ClassId equals e.ClassId
                              where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year
                              select e.UId;
-                db.SaveChanges();
-                foreach (string uid in query2.ToArray())
+                // when given an array of uids of students from the query
+                var query2Array = query2.ToArray();
+                foreach (string uid in query2Array)
                 {
-                    UpdateGrades(subject, num, uid, season, year);
+                    UpdateGrades(subject, num, uid, season, year); //then update the grades of each student
                 }
                 return Json(new { success = true });
             }
@@ -370,38 +372,57 @@ namespace LMS_CustomIdentity.Controllers
         }
 
         /// <summary>
-        /// Updates the grades for all students when a new assignment is released or
-        /// When an assignment is graded.
+        /// Updates the grades for a specific student and gives them a letter grade based on the calculated percentage.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="subject">The course subject abbreviation</param>
+        /// <param name="num">The course number</param>
+        /// <param name="uid">The uid of the student</param>
+        /// <param name="season">The season of the semester</param>
+        /// <param name="year">The year of the semester</param>
         private void UpdateGrades(string subject, int num, string uid, string season, int year)
         {
-            var query1 = from a in db.Assignments
-                         join s in db.Submissions on a.AId equals s.AId
+            //queru for student information adn submission information.
+            var query1 = from e in db.Enrolleds
+                         join c in db.Classes on e.ClassId equals c.ClassId
+                         into asa1
+                         from joined in asa1.DefaultIfEmpty()
+                         join ac in db.AssignmentCategories on joined.ClassId equals ac.ClassId
+                         into asa2
+                         from joined1 in asa2.DefaultIfEmpty()
+                         join a in db.Assignments on joined1.AcId equals a.AcId
+                         into asa3
+                         from joined2 in asa3.DefaultIfEmpty()
+                         join s in db.Submissions on new{uid = e.UId, aid = joined2.AId} equals new{uid = s.UId, aid = s.AId}
                          into asa
-                         from joined in asa.DefaultIfEmpty()
+                         from joined3 in asa.DefaultIfEmpty()
                          select new
                          {
-                             uid = joined.UId,
-                             sScore = joined.Score,
-                             a = joined.AId,
-                             ac = a.AcId,
-                             aPoints =a.Points
+                             uid = e.UId != null ? e.UId : "",
+                             sScore = joined3.Score != null ? joined3.Score : 0,
+                             //null checks are needed due to the left outer join being applied to the tables. This even applies to the non-nullable variables
+                             a = joined3.AId != null ? joined3.AId : -1, 
+                             ac = joined1.AcId != null ? joined1.AcId : 1,
+                             aPoints = joined2.Points != null ? joined2.Points : 0,
+                             cId = joined.ClassId
                          };
+
+            //query that applies the inputted values to the database
             var query = from co in db.Courses
                         join c in db.Classes on co.CourseId equals c.CourseId
                         join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
-                        join asa in query1 on ac.AcId equals asa.ac
+                        join asa in query1 on new{acId = ac.AcId, cid = c.ClassId} equals new{acId = asa.ac, cid = asa.cId}
                         join e in db.Enrolleds on asa.uid equals e.UId
-                        where co.Subject == subject && co.Number == num.ToString() && asa.uid == uid && c.Semester == season + year
+                        where co.Subject == subject && co.Number == num.ToString() && e.UId == uid && c.Semester == season + year
                         select new
                         {
                             aScore = asa.sScore == null ? 0 : asa.sScore,
                             aPoints = asa.aPoints,
+                            acId = ac.AcId,
                             ac = ac,
                             Aid = asa.a
                         };
             
+            //Dicctionaries to collect data and keep track of which categories has already been processed.
             Dictionary<int, int> acPercentages = new Dictionary<int, int>();
             Dictionary<int, double> sScore = new Dictionary<int, double>();
             Dictionary<int, int> sPoints = new Dictionary<int, int>();
@@ -430,12 +451,15 @@ namespace LMS_CustomIdentity.Controllers
                 scale += acPercentages[q];
                 sScore[q] = (sScore[q] / sPoints[q]) * acPercentages[q];
             }
+            //scales grade based on the total percentage of all assignment categories
             scale = 100/scale;
             double grade = 0;
             foreach (var q in sScore.Keys)
             {
                 grade += sScore[q] * scale;
             }
+
+            //assigns a grade to the student based on the grade percentage
             if(grade >= 93)
             {
                 db.Update(new Enrolled { UId = uid, Grade = "A", ClassId = (int)classID! });

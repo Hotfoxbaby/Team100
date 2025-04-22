@@ -171,7 +171,7 @@ namespace LMS.Controllers
                          join ac in db.AssignmentCategories on c.ClassId equals ac.ClassId
                          join a in db.Assignments on ac.AcId equals a.AcId
                          join s in db.Students on uid equals s.UId
-                         join su in db.Submissions on a.AId equals su.AId
+                         join su in db.Submissions on new{aid = a.AId, uid = s.UId} equals new{aid = su.AId, uid = su.UId}
                          where co.Subject == subject && co.Number == num.ToString() && c.Semester == season + year.ToString() && a.Name == asgname
                          select new
                          {
